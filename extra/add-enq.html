@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Enquires</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Sidebar -->
+    <div class="flex">
+        <nav class="bg-purple-700 text-white w-60 min-h-screen p-4">
+            <div class="mb-6 font-bold text-2xl">
+                <a href="/dashboard.html">GymPro+</a>
+            </div>
+            <ul>
+                <li class="flex items-center py-2">
+                    <a href="/dashboard.html" class="flex items-center w-full">
+                        <i class="fas fa-tachometer-alt"></i><span class="ml-4">Dashboard</span>
+                    </a>
+                </li>
+                <li class="flex items-center py-2">
+                    <a href="#" class="flex items-center w-full">
+                        <i class="fas fa-chart-line"></i><span class="ml-4">Reports</span>
+                    </a>
+                </li>
+                <li class="flex items-center py-2">
+                    <a href="#" class="flex items-center w-full">
+                        <i class="fas fa-wallet"></i><span class="ml-4">Transactions</span>
+                    </a>
+                </li>
+                <li class="flex items-center py-2">
+                    <a href="#" class="flex items-center w-full">
+                        <i class="fas fa-coins"></i><span class="ml-4">Expense</span>
+                    </a>
+                </li>
+                <li class="flex items-center py-2">
+                    <a href="/add-member.html" class="flex items-center w-full">
+                        <i class="fas fa-user"></i><span class="ml-4">Members</span>
+                    </a>
+                </li>
+                <li class="flex items-center py-2">
+                    <a href="#" class="flex items-center w-full">
+                        <i class="fas fa-users"></i><span class="ml-4">Staff</span>
+                    </a>
+                </li>
+                <li class="flex items-center py-2">
+                    <a href="#" class="flex items-center w-full">
+                        <i class="fas fa-star"></i><span class="ml-4">Ratings</span>
+                    </a>
+                </li>
+                <li class="flex items-center py-2">
+                    <a href="#" class="flex items-center w-full">
+                        <i class="fas fa-user-cog"></i><span class="ml-4">Admin</span>
+                    </a>
+                </li>
+                <li class="flex items-center py-2">
+                    <a href="#" class="flex items-center w-full">
+                        <i class="fas fa-bullseye"></i><span class="ml-4">Leads</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="flex-1">
+            <div class="bg-white text-white border-b border-gray-40 p-4 mb-6">
+                <div class="flex justify-between">                    
+                    <div class="flex items-center bg-white p-2 shadow rounded w-2/3">
+                        <input type="text" placeholder="Search with ID/Phone No" class="outline-none text-gray-700 flex-grow p-2">
+                        <button class="text-white bg-teal-600 p-2"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="flex items-center space-x-4 relative">
+                        <a href="/add-item.html"><i class="fas fa-user-plus text-purple-700 text-2xl"></i></a>
+                        <i class="fas fa-credit-card text-purple-700 text-2xl"></i>
+                        <i class="fas fa-question-circle text-purple-700 text-2xl"></i>
+                        <i class="fas fa-user-friends text-purple-700 text-2xl"></i>
+                        <i class="fas fa-comments text-purple-700 text-2xl"></i>
+                        <div class="relative">
+                            <button id="userIcon" class="cursor-pointer">
+                                <i class="fas fa-user-circle text-purple-700 text-2xl"></i>
+                            </button>
+                            <div
+                                id="dropdownMenu"
+                                class="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-md text-gray-700 hidden"
+                            >
+                                <ul>
+                                    <li class="px-4 py-2 hover:bg-gray-200 cursor-pointer">Profile</li>
+                                    <li class="px-4 py-2 hover:bg-gray-200 cursor-pointer">Settings</li>
+                                    <li class="px-4 py-2 hover:bg-gray-200 cursor-pointer">Logout</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+            <div class="p-6 bg-white">   
+                <div class="max-w-7xl mx-auto py-12">
+                    <div class="flex justify-center">
+                        <h1 class="text-2xl font-bold mb-4">New Lead</h1>
+                    </div>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block font-medium">Name*</label>
+                                <input type="text" placeholder="Enter Name"  class="w-full border border-gray-300 p-2">
+                            </div>
+                            <div>
+                                <label class="block font-medium">Email</label>
+                                <input type="text" placeholder="Enter email" class="w-full border border-gray-300 p-2">
+                            </div>
+                            <div>
+                                <label class="block font-medium">Gender</label>
+                                <input type="text" placeholder="Male" class="w-full border border-gray-300 p-2">
+                            </div>
+                            <div>
+                                <label class="block font-medium">Next Follow-up Date*</label>
+                                <input type="date"class="w-full border border-gray-300 p-2">
+                            </div>
+                            <div>
+                                <label class="block font-medium">Plan like to join</label>
+                                <input type="text" placeholder="---" class="w-full border border-gray-300 p-2">
+                            </div>
+                            <div>
+                                <label class="block font-medium">Member Address</label>
+                                <textarea class="w-full border border-gray-300 p-2"></textarea>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block font-medium">Phone Number*</label>
+                                <input type="text" placeholder="Member Phone Number" class="w-full border border-gray-300 p-2">
+                            </div>
+                            <div>
+                                <label class="block font-medium">DOB</label>
+                                <input type="date" class="w-full border border-gray-300 p-2">
+                            </div>
+                            <div>
+                                <label class="block font-medium">Occupation</label>
+                                <input type="text" placeholder="Enter occupation" class="w-full border border-gray-300 p-2">
+                            </div>
+                            <div>
+                                <label class="block font-medium">Interested in</label>
+                                <input type="text" placeholder="Enter interested in" class="w-full border border-gray-300 p-2">
+                            </div>
+                            <div>
+                                <label class="block font-medium">How did you came to know about us</label>
+                                <input type="text" placeholder="how did you came to know about us" class="w-full border border-gray-300 p-2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-8">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Proceed
+                        </button>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        const userIcon = document.getElementById('userIcon');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+    
+        userIcon.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('hidden');
+        });
+    
+        document.addEventListener('click', (e) => {
+            if (!userIcon.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html> 

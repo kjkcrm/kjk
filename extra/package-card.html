@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Package Card</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-purple-500 via-teal-500 to-blue-500 flex items-center justify-center min-h-screen">
+    <div class="flex items-center flex-col justify-center">
+        <!-- Card -->
+        <div class="bg-white shadow-lg rounded-lg p-6 h-[240px] w-96 transition-transform transform hover:scale-105">
+            <!-- Logo and User Image Row -->
+            <div class="flex items-center justify-around space-x-4">
+                <img src="https://via.placeholder.com/100" alt="Logo" class="w-16 h-16">
+                <img src="https://via.placeholder.com/100" alt="User Image" class="w-16 h-16 rounded-full border-2 border-teal-500">
+            </div>
+
+            <!-- User ID and Label Row -->
+            <div class="flex justify-around  items-center mt-8 space-y-2">
+                <p class="text-gray-700 font-bold text-lg">User ID: 12345</p>
+                <p class="text-teal-500 font-semibold">You have 40 days left</p>
+            </div>
+        </div>
+
+        <!-- Attendance Button -->
+        <div class="mt-6">
+            <button class="bg-blue-500 text-white py-2 px-6 rounded-lg shadow-lg hover:bg-teal-600 hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-teal-400">
+                Attendance
+            </button>
+        </div>
+    </div>
+</body>
+</html>
