@@ -352,7 +352,7 @@ if (isset($_SESSION['success_message'])) {
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block font-medium">Pack Amount*</label>
+                                    <label class="block font-medium">Pack Amount</label>
                                     <input type="number" id="pack-amount" placeholder="Member amount"
                                         class="w-full border border-gray-300 p-2" name="packAmount" readonly>
                                 </div>

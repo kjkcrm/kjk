@@ -8,6 +8,9 @@ $conn = getDbConnection();
 $entriesPerPage = isset($_GET['entries']) ? (int) $_GET['entries'] : 10;
 $currentPage = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 
+// Get the search query, if provided
+$searchQuery = isset($_GET['search_query']) ? trim($_GET['search_query']) : '';
+
 // Calculate OFFSET
 $offset = ($currentPage - 1) * $entriesPerPage;
 
@@ -73,12 +76,20 @@ $totalPages = ceil($totalRecords / $entriesPerPage);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
+<style>
+    .dropdown:hover .dropdown-menu {
+  display: block;
+}
+</style>
+
 <body class="bg-gray-100">
 
     <!-- Sidebar -->
     <div class="flex">
-        <?php include 'side_nav.php';
-         ?>
+    <?php
+        require_once "side_nav.php";
+        ?>
+
         <!-- Main Content -->
         <div class="flex-1">
             <div class="bg-white text-white border-b border-gray-40 p-4 mb-6">
@@ -120,6 +131,22 @@ $totalPages = ceil($totalRecords / $entriesPerPage);
                     <div class="flex justify-start mb-4">
                         <button class="bg-blue-500 text-white px-4 py-2 rounded">Add Offers</button>
                     </div>
+                    <div class="flex justify-start mb-4">
+                    <div class="p-10">
+                        <div class="dropdown inline-block relative">
+                        <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
+                            <span class="mr-1">Dropdown</span>
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
+                        </button>
+                        <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
+                            <li class=""><a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">One</a></li>
+                            <li class=""><a class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Two</a></li>
+                            <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Three is the magic number</a></li>
+                        </ul>
+                        </div>
+
+                        </div>
+                    </div>
 
                     <h1 class="text-center text-xl font-bold text-purple-700 mb-4">Offers Details</h1>
 
@@ -139,7 +166,7 @@ $totalPages = ceil($totalRecords / $entriesPerPage);
                                         <option value="50" <?php if ($entriesPerPage == 50)
                                             echo 'selected'; ?>>50
                                         </option>
-                                        <option value="100" <?php if ($entriesPerPage == 100)
+                                        <option value="7000" <?php if ($entriesPerPage == 7000)
                                             echo 'selected'; ?>>100
                                         </option>
                                     </select>
@@ -177,31 +204,32 @@ $totalPages = ceil($totalRecords / $entriesPerPage);
                                          // Check if status is inactive
                                     ?>
                                     <?php
-// Determine if the member is inactive based on ExpiryDate
-$currentDate = date('Y-m-d'); // Get the current date in YYYY-MM-DD format
-$isInactive = strtotime($row['ExpiryDate']) < strtotime($currentDate); // Check if ExpiryDate is in the past
-?>
-<tr class="<?php echo $isInactive ? 'bg-red-100' : ''; ?>">
-    <!-- Add background color for inactive -->
-    <td class="border border-gray-300 p-2"><?php echo $serialNumber++; ?></td>
-    <td class="border border-gray-300 p-2"><?php echo $row['MemberID']; ?></td>
-    <td class="border border-gray-300 p-2"><?php echo $row['MemberName']; ?></td>
-    <td class="border border-gray-300 p-2"><?php echo $row['PhoneNumber']; ?></td>
-    <td class="border border-gray-300 p-2"><?php echo $row['Email']; ?></td>
-    <td class="border border-gray-300 p-2"><?php echo $row['MembershipPack']; ?></td>
-    <td class="border border-gray-300 p-2"><?php echo $row['DateOfJoin']; ?></td>
-    <td class="border border-gray-300 p-2"><?php echo $row['ExpiryDate']; ?></td>
-    <td class="border border-gray-300 p-2 text-<?php echo $isInactive ? 'red-500' : 'gray-700'; ?>">
-        <?php echo $isInactive ? 'Inactive' : 'Active'; ?>
-    </td>
-    <td class="border border-gray-300 p-2">
-        <a href="renewal.php" class="text-blue-500">Edit</a>
-        |
-        <a href="delete.php?id=<?php echo $row['MemberID']; ?>" class="text-red-500" onclick="return confirm('Are you sure?');">Delete</a>
-        |
-        <a href="memberprofile.php?id=<?php echo $row['MemberID']; ?>" class="text-red-500">view</a>
-    </td>
-</tr>
+                                        // Determine if the member is inactive based on ExpiryDate
+                                        $currentDate = date('Y-m-d'); // Get the current date in YYYY-MM-DD format
+                                        $isInactive = strtotime($row['ExpiryDate']) < strtotime($currentDate); // Check if ExpiryDate is in the past
+                                        ?>
+                                        <tr class="<?php echo $isInactive ? 'bg-red-100' : ''; ?>">
+                                            <!-- Add background color for inactive -->
+                                            <td class="border border-gray-300 p-2"><?php echo $serialNumber++; ?></td>
+                                            <td class="border border-gray-300 p-2"><?php echo $row['MemberID']; ?></td>
+                                            <td class="border border-gray-300 p-2"><?php echo $row['MemberName']; ?></td>
+                                            <td class="border border-gray-300 p-2"><?php echo $row['PhoneNumber']; ?></td>
+                                            <td class="border border-gray-300 p-2"><?php echo $row['Email']; ?></td>
+                                            <td class="border border-gray-300 p-2"><?php echo $row['MembershipPack']; ?></td>
+                                            <td class="border border-gray-300 p-2"><?php echo $row['DateOfJoin']; ?></td>
+                                            <td class="border border-gray-300 p-2"><?php echo $row['ExpiryDate']; ?></td>
+                                            <td class="border border-gray-300 p-2 text-<?php echo $isInactive ? 'red-500' : 'gray-700'; ?>">
+                                                <?php echo $isInactive ? 'Inactive' : 'Active'; ?>
+                                            </td>
+                                            <td class="border border-gray-300 p-2">
+                                                
+                                            <a href="memberprofile.php?id=<?php echo $row['MemberID']; ?>" class="text-blue-500">View</a>
+                                                |
+                                            <a href="edit.php?id=<?php echo $row['MemberID']; ?>" class="text-blue-500">Edit</a>
+                                                |
+                                                <a href="delete.php?id=<?php echo $row['MemberID']; ?>" class="text-red-500" onclick="return confirm('Are you sure?');">Delete</a>
+                                            </td>
+                                        </tr>
 
                                 <?php } ?>
                             </tbody>

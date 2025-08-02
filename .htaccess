@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^att_details/([0-9]+)/?$ att_details.php?entries=$1 [L]

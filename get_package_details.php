@@ -15,6 +15,18 @@ if (isset($_GET['package_id'])) {
 
     if ($result->num_rows > 0) {
         $package = $result->fetch_assoc();
+
+        // Map package_duration to days
+        $durationMapping = [
+            '1 month' => 30,
+            '3 months' => 90,
+            '6 months' => 180,
+            '1 year' => 365,
+        ];
+
+        // Convert package_duration to days
+        $package['package_duration'] = $durationMapping[$package['package_duration']] ?? 0;
+
         // Return the package details as a JSON response
         echo json_encode($package);
     } else {
